@@ -245,20 +245,6 @@ print(p_box)
 dev.off()
 
 gene_data$Phenotype <- ifelse(gene_data$Type == "Health", 0, 1)
-cor_data <- gene_data[, c("MDM2", "PPARG", "Phenotype")]
-cor_data <- na.omit(cor_data)
-cor_matrix <- cor(cor_data, method = "spearman")
-cor_p <- cor.mtest(cor_data, method = "spearman")$p
-corrplot(cor_matrix, 
-         method = "color", 
-         type = "upper",
-         p.mat = cor_p, 
-         sig.level = 0.05,
-         insig = "blank",
-         tl.col = "black",
-         tl.srt = 45,
-         main = "Correlation between Gene Expression and Clinical Phenotype")
-dev.off()
 
 p_scatter <- ggscatter(cor_data, 
                        x = "Phenotype", 
